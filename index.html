@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Text Counter & File Editor</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html-docx-js/0.3.1/html-docx.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1 id="txt-title">✨ Đếm Văn Bản & Tập Tin</h1>
+            <div class="top-controls">
+                <button class="icon-btn" onclick="toggleTheme()" id="btn-theme">🌙 Tối</button>
+                <button class="icon-btn" onclick="toggleLang()" id="btn-lang">🌐 EN</button>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value" id="char-count">0</div>
+                <div class="stat-label" id="lbl-chars">Tổng ký tự</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="char-no-space">0</div>
+                <div class="stat-label" id="lbl-chars-nospace">Ký tự (không cách)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="word-count">0</div>
+                <div class="stat-label" id="lbl-words">Từ</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="paragraph-count">0</div>
+                <div class="stat-label" id="lbl-paragraphs">Đoạn văn</div>
+            </div>
+        </div>
+
+        <div class="file-toolbar">
+            <div class="file-upload-wrapper">
+                <label for="file-upload" class="icon-btn" style="cursor: pointer;">
+                    📂 <span id="lbl-import">Tải file lên (.txt, .docx, .json, .md, .pdf)</span>
+                </label>
+                <input type="file" id="file-upload" accept=".txt, .json, .md, .docx, .pdf">
+            </div>
+
+            <div class="export-controls">
+                <div class="input-group">
+                    <label id="lbl-filename">Tên file:</label>
+                    <input type="text" id="custom-filename" placeholder="van-ban-cua-toi">
+                </div>
+
+                <div class="input-group" style="flex: 0; min-width: auto;">
+                    <select id="export-format">
+                        <option value="txt" selected>.TXT</option>
+                        <option value="docx">.DOCX (Word)</option>
+                        <option value="md">.MD</option>
+                        <option value="json">.JSON</option>
+                        <option value="pdf">.PDF</option>
+                    </select>
+                </div>
+
+                <button class="btn btn-primary" onclick="downloadFile()">
+                    💾 <span id="lbl-download">Tải về</span>
+                </button>
+            </div>
+        </div>
+
+        <textarea id="text-input" placeholder="Nhập hoặc dán văn bản của bạn tại đây..."></textarea>
+
+        <div class="actions">
+            <button class="btn btn-clear" onclick="clearText()" id="lbl-clear">🗑️ Xóa tất cả</button>
+            <button class="btn btn-copy" onclick="copyText()" id="lbl-copy">📋 Sao chép</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        © 2026 | © Copyright ATCX. All rights reserved.
+    </footer>
+
+    <div id="toast" class="toast"></div>
+    <script src="script.js"></script>
+
+</body>
+</html>
